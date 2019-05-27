@@ -491,12 +491,9 @@ export default {
       } else {
         itemId = item.application
       }
-      if (itemId.includes('/')) {
-        itemId = itemId.replace('/', '*')
-      }
       Object.assign(this.confirm, {
         enable: true,
-        title: 'warnDeleteAccessControl',
+        title: 'Are you sure to Delete Access Control',
         text: `Id: ${itemId}`,
         id: itemId
       })

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} %-5p [%t] [%c] %X{tid} - %m%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
+    <!--for further documentation-->
+    <Append>true</Append>
+    <File>../dubbo-admin/logs/dubbo-admin.log</File>
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} %-5p [%t] [%c] %X{tid} - %m%n
+      </pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>../dubbo-admin/logs/dubbo-admin.log.%d{yyyyMMdd}</fileNamePattern>
+    </rollingPolicy>
+  </appender>
+  <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
+    <!--for further documentation-->
+    <Append>true</Append>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+    <File>../dubbo-admin/logs/dubbo-admin-error.log</File>
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} %-5p [%t] [%c] %X{tid} - %m%n
+      </pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>../dubbo-admin/logs/dubbo-admin-error.log.%d{yyyyMMdd}</fileNamePattern>
+      <!--日志文件保留天数 参考地址：https://www.sitec.cc/2015/10/30/logback/-->
+      <MaxHistory>1</MaxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <logger name="org.apache.http" level="OFF"/>
+  <logger name="com.meizu.yard" level="OFF"/>
+
+  <root level="INFO">
+    <appender-ref ref="DEFAULT"/>
+    <appender-ref ref="ERROR"/>
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>

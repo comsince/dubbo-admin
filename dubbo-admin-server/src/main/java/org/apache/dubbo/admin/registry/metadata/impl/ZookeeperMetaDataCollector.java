@@ -69,8 +69,9 @@ public class ZookeeperMetaDataCollector implements MetaDataCollector {
     }
 
     private String getNodePath(MetadataIdentifier metadataIdentifier) {
-        return toRootDir() + metadataIdentifier.getUniqueKey(MetadataIdentifier.KeyTypeEnum.PATH) +
-                Constants.PATH_SEPARATOR + METADATA_NODE_NAME;
+        return toRootDir() + metadataIdentifier.getUniqueKey(MetadataIdentifier.KeyTypeEnum.PATH);
+//                +
+//                Constants.PATH_SEPARATOR + METADATA_NODE_NAME;
     }
 
     private String toRootDir() {

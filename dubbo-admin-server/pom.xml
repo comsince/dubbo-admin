@@ -78,6 +78,19 @@
         </dependency>
 
         <dependency>
+            <groupId>com.alibaba.middleware</groupId>
+            <artifactId>metrics-core-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.middleware</groupId>
+            <artifactId>metrics-core-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.middleware</groupId>
+            <artifactId>metrics-common</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
             <exclusions>

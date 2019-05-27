@@ -87,6 +87,10 @@ public class MetricDTO {
         return value;
     }
 
+    public void setVaule(Object value){
+        this.value = value;
+    }
+
     public Map<String, String> getTags() {
         return tags;
     }

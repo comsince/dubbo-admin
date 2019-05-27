@@ -21,6 +21,7 @@ import org.apache.dubbo.admin.common.util.Constants;
 import org.apache.dubbo.admin.common.util.ConvertUtil;
 import org.apache.dubbo.admin.common.util.OverrideUtils;
 import org.apache.dubbo.admin.common.util.YamlParser;
+import org.apache.dubbo.admin.model.adapter.BalancingDTO2OverrideConfigAdapter;
 import org.apache.dubbo.admin.model.adapter.DynamicConfigDTO2OverrideDTOAdapter;
 import org.apache.dubbo.admin.model.adapter.LoadBalance2OverrideAdapter;
 import org.apache.dubbo.admin.model.adapter.WeightToOverrideAdapter;
@@ -334,7 +335,7 @@ public class OverrideServiceImpl extends AbstractService implements OverrideServ
         String scope = ConvertUtil.getScopeFromDTO(balancingDTO);
         String path = getPath(id);
         String config = dynamicConfiguration.getConfig(path);
-        OverrideConfig overrideConfig = OverrideUtils.balancingDTOtoConfig(balancingDTO);
+        OverrideConfig overrideConfig = new BalancingDTO2OverrideConfigAdapter(balancingDTO);
         OverrideDTO overrideDTO = insertConfig(config, overrideConfig, id, scope, Constants.BALANCING);
         dynamicConfiguration.setConfig(path, YamlParser.dumpObject(overrideDTO));
 
@@ -362,7 +363,7 @@ public class OverrideServiceImpl extends AbstractService implements OverrideServ
                             oldBalancing = OverrideUtils.configtoBalancingDTO(overrideConfig, Constants.SERVICE, overrideDTO.getKey());
                         }
                         int index = configs.indexOf(overrideConfig);
-                        OverrideConfig newConfig = OverrideUtils.balancingDTOtoConfig(balancingDTO);
+                        OverrideConfig newConfig = new BalancingDTO2OverrideConfigAdapter(balancingDTO);
                         configs.set(index, newConfig);
                         break;
                     }
@@ -514,7 +515,6 @@ public class OverrideServiceImpl extends AbstractService implements OverrideServ
         return result;
     }
     private String getPath(String key) {
-        key = key.replace("/", "*");
         return prefix + Constants.PATH_SEPARATOR + key + Constants.PATH_SEPARATOR + Constants.CONFIGURATOR;
     }
 

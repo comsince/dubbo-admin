@@ -22,6 +22,10 @@ import org.apache.dubbo.admin.model.store.OverrideDTO;
 import org.apache.dubbo.common.utils.StringUtils;
 
 public class DynamicConfigDTO2OverrideDTOAdapter extends OverrideDTO {
+
+  public DynamicConfigDTO2OverrideDTOAdapter() {
+  }
+
   public DynamicConfigDTO2OverrideDTOAdapter(DynamicConfigDTO dynamicConfigDTO) {
     if (StringUtils.isNotEmpty(dynamicConfigDTO.getApplication())) {
       setScope(Constants.APPLICATION);

@@ -19,6 +19,7 @@ package org.apache.dubbo.admin.common.util;
 
 import org.apache.dubbo.admin.model.dto.DynamicConfigDTO;
 import org.apache.dubbo.admin.model.store.OverrideConfig;
+import org.apache.dubbo.admin.model.store.OverrideDTO;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -59,6 +60,14 @@ public class YamlParserTest {
             assertEquals(2, parameters.size());
             assertEquals("*", parameters.get("method"));
             assertEquals("random", parameters.get("strategy"));
+        }
+    }
+
+    @Test
+    public void parseBalance() throws IOException {
+        try (InputStream yamlStream = this.getClass().getResourceAsStream("/LoadBalance1.yml")){
+            OverrideDTO overrideDTO = YamlParser.loadObject(streamToString(yamlStream), OverrideDTO.class);
+            System.out.println(overrideDTO.getConfigs());
         }
     }
 

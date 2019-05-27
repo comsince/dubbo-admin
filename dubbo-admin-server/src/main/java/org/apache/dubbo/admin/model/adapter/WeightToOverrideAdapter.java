@@ -20,6 +20,9 @@ import org.apache.dubbo.admin.model.domain.Override;
 import org.apache.dubbo.admin.model.domain.Weight;
 
 public class WeightToOverrideAdapter extends Override {
+  public WeightToOverrideAdapter() {
+  }
+
   public WeightToOverrideAdapter(Weight weight) {
     setId(weight.getId());
     setHash(weight.getHash());
